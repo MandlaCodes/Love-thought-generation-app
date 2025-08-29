@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>High Thoughts for My Girl</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body, html {
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+  }
+
+  #bg-video {
+    position: fixed;
+    top: 0; left: 0;
+    min-width: 100%; min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    transition: transform 0.2s;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+  }
+
+  h2 { font-size: 2.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); }
+  p { font-size: 1.2rem; margin-bottom: 1.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
+
+  #thoughtDisplay {
+    margin-top:2rem;
+    font-size:1.4rem;
+    padding:1rem 2rem;
+    background:#ffffff10;
+    border-radius:15px;
+    color:#fff;
+    text-shadow:1px 1px 4px #000;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 4px 6px rgba(0,0,0,0.5), 0 1px 1px rgba(255,255,255,0.2);
+    transform: perspective(800px) rotateX(5deg);
+    opacity:0;
+    transition:opacity 0.5s ease-in-out;
+    min-height:50px;
+  }
+
+  #thoughtDisplay.show { opacity:1; }
+
+  #buttonthoughts {
+    font-size:1.2rem;
+    padding:1rem 2rem;
+    background:linear-gradient(145deg,#ff69b4,#ff85c1);
+    border:none;
+    border-radius:12px;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 6px 10px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  #buttonthoughts:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 10px 15px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.4); }
+  #buttonthoughts:active { transform: translateY(1px); box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); }
+
+  .floating {
+    position:absolute;
+    font-size:24px;
+    animation:pop 2s forwards;
+  }
+
+  @keyframes pop { 
+    0% { transform: scale(0); opacity:1; } 
+    50% { transform: scale(1.5); opacity:1; } 
+    100% { transform: scale(1); opacity:0; top:-50px; } 
+  }
+
+  @media(max-width:480px){
+    h2{font-size:1.6rem;}
+    p{font-size:1rem;}
+    #thoughtDisplay{font-size:1rem;padding:0.6rem 1rem;}
+    #buttonthoughts{font-size:0.9rem;padding:0.6rem 1.2rem;}
+  }
+</style>
+</head>
+<body>
+
+<video autoplay muted loop id="bg-video">
+  <source src="9905537-hd_1920_1080_30fps.mp4" type="video/mp4">
+</video>
+
+<div class="content">
+  <h2>High Thoughts of Steph 💖</h2>
+  <p id="counter">9 months with you ❤️</p>
+  <button id="buttonthoughts">Press to see random thought</button>
+  <div id="thoughtDisplay"></div>
+</div>
+
+<script>
+const thoughts = [
+  "She loves laughing at my jokes and I'm a funny guy so I know I'll always see her pretty smile",
+  "Deja vu isn't talked about enough!!!!!!",
+  "I love how she always supports me and my goals",
+  "She's truly an angel in my life, always lifting me up and stuff",
+  "Stephanie doesn't like it when I call her Stephanie...She pretty asl though",
+  "Nooo I was going to say something but I forgot...",
+  "GET INNNN!!",
+  "I miss STEPH",
+  "Kicking my feet and stuff",
+  "She's the best thing that ever happened to me, no cap",
+  "I love how she always knows what to say to make me feel better",
+  "She's gonna be the best mom one day to our kids",
+  "I love you more than all the i love you's i'll say in my life time",
+  "She's come from so far, grown so much and really becoming this amazing women",
+  "She really pushes me and I love how she's stuck by my side",
+  "She doesn't know it but she brings out the best in me",
+  "She's brought color and meaning in my life",
+  "She's truly my best friend",
+  "9 months with her and i still continue to fall for her",
+  "She's got the cutest smile",
+  "I can't wait to grow with her and be a man she can look up to and rely on",
+  "My goal? A big house and a beautiful family with her by the beach side surrounded by people i call family",
+];
+
+const button = document.getElementById("buttonthoughts");
+const display = document.getElementById("thoughtDisplay");
+
+function typeText(text, element){
+  element.textContent="";
+  let i=0;
+  function typing(){ if(i<text.length){ element.textContent+=text.charAt(i); i++; setTimeout(typing,40); } }
+  typing();
+}
+
+button.addEventListener("click", ()=>{
+  const newThought = thoughts[Math.floor(Math.random()*thoughts.length)];
+  display.classList.remove("show");
+  setTimeout(()=>{ typeText(newThought, display); display.classList.add("show"); },300);
+});
+
+// Floating hearts and flowers
+function createFloating(x,y){
+  const emojis = ["❤️","🌸","🌹","💐"];
+  const emoji = emojis[Math.floor(Math.random()*emojis.length)];
+  const el = document.createElement("div");
+  el.classList.add("floating");
+  el.innerHTML = emoji;
+  el.style.left = (x-12)+"px";
+  el.style.top = (y-12)+"px";
+  el.style.fontSize = (16+Math.random()*24)+"px";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),2000);
+}
+
+document.addEventListener("click", e=>{ createFloating(e.clientX, e.clientY); });
+document.addEventListener("touchstart", e=>{ if(e.touches.length>0) createFloating(e.touches[0].clientX, e.touches[0].clientY); });
+
+// Subtle parallax effect
+const bg = document.getElementById("bg-video");
+document.addEventListener("mousemove", e=>{
+  const x = (e.clientX/window.innerWidth - 0.5) * 10;
+  const y = (e.clientY/window.innerHeight - 0.5) * 10;
+  bg.style.transform = `translate(${x}px, ${y}px) scale(1.05)`;
+});
+</script>
+
+</body>
+</html>
