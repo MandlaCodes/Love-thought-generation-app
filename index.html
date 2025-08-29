@@ -10,7 +10,8 @@
   body, html {
     height: 100%;
     overflow: hidden;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,
+                 Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji;
     cursor: pointer;
   }
 
@@ -53,6 +54,7 @@
     opacity:0;
     transition:opacity 0.5s ease-in-out;
     min-height:50px;
+    word-wrap: break-word;
   }
 
   #thoughtDisplay.show { opacity:1; }
@@ -107,9 +109,9 @@
 <script>
 const thoughts = [
   "She loves laughing at my jokes and I'm a funny guy so I know I'll always see her pretty smile",
-  "Deja vu isn't talked about enough!!!!!!",
+  "Deja vu isn't talked about enough!",
   "I love how she always supports me and my goals",
-  "She's truly an angel in my life, always lifting me up and stuff",
+  "She's truly an angel in my life, always lifting me up",
   "Stephanie doesn't like it when I call her Stephanie...She pretty asl though",
   "Nooo I was going to say something but I forgot...",
   "GET INNNN!!",
@@ -118,25 +120,32 @@ const thoughts = [
   "She's the best thing that ever happened to me, no cap",
   "I love how she always knows what to say to make me feel better",
   "She's gonna be the best mom one day to our kids",
-  "I love you more than all the i love you's i'll say in my life time",
-  "She's come from so far, grown so much and really becoming this amazing women",
+  "I love you more than all the 'I love you's' I'll say in my lifetime",
+  "She's come from so far, grown so much and really becoming amazing",
   "She really pushes me and I love how she's stuck by my side",
   "She doesn't know it but she brings out the best in me",
   "She's brought color and meaning in my life",
   "She's truly my best friend",
-  "9 months with her and i still continue to fall for her",
+  "9 months with her and I still continue to fall for her",
   "She's got the cutest smile",
   "I can't wait to grow with her and be a man she can look up to and rely on",
-  "My goal? A big house and a beautiful family with her by the beach side surrounded by people i call family",
+  "My goal? A big house and a beautiful family with her by the beach surrounded by people I call family",
 ];
 
 const button = document.getElementById("buttonthoughts");
 const display = document.getElementById("thoughtDisplay");
 
+
 function typeText(text, element){
-  element.textContent="";
-  let i=0;
-  function typing(){ if(i<text.length){ element.textContent+=text.charAt(i); i++; setTimeout(typing,40); } }
+  element.innerHTML = "";
+  let i = 0;
+  function typing() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, 40);
+    }
+  }
   typing();
 }
 
@@ -146,7 +155,7 @@ button.addEventListener("click", ()=>{
   setTimeout(()=>{ typeText(newThought, display); display.classList.add("show"); },300);
 });
 
-// Floating hearts and flowers
+
 function createFloating(x,y){
   const emojis = ["❤️","🌸","🌹","💐"];
   const emoji = emojis[Math.floor(Math.random()*emojis.length)];
@@ -160,10 +169,10 @@ function createFloating(x,y){
   setTimeout(()=>el.remove(),2000);
 }
 
+
 document.addEventListener("click", e=>{ createFloating(e.clientX, e.clientY); });
 document.addEventListener("touchstart", e=>{ if(e.touches.length>0) createFloating(e.touches[0].clientX, e.touches[0].clientY); });
 
-// Subtle parallax effect
 const bg = document.getElementById("bg-video");
 document.addEventListener("mousemove", e=>{
   const x = (e.clientX/window.innerWidth - 0.5) * 10;
