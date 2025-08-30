@@ -134,28 +134,30 @@ const thoughts = [
 
 const button = document.getElementById("buttonthoughts");
 const display = document.getElementById("thoughtDisplay");
-
+let typingTimeout;
 
 function typeText(text, element){
-  element.innerHTML = "";
+  clearTimeout(typingTimeout); // stop previous typing
+  element.textContent = "";
   let i = 0;
+
   function typing() {
-    if (i < text.length) {
-      element.innerHTML += text.charAt(i);
+    if(i < text.length){
+      element.textContent += text.charAt(i);
       i++;
-      setTimeout(typing, 40);
+      typingTimeout = setTimeout(typing,40);
     }
   }
   typing();
+  element.classList.add("show");
 }
 
 button.addEventListener("click", ()=>{
   const newThought = thoughts[Math.floor(Math.random()*thoughts.length)];
-  display.classList.remove("show");
-  setTimeout(()=>{ typeText(newThought, display); display.classList.add("show"); },300);
+  typeText(newThought, display);
 });
 
-
+// Floating hearts/flowers on click or touch
 function createFloating(x,y){
   const emojis = ["❤️","🌸","🌹","💐"];
   const emoji = emojis[Math.floor(Math.random()*emojis.length)];
@@ -169,10 +171,10 @@ function createFloating(x,y){
   setTimeout(()=>el.remove(),2000);
 }
 
+document.addEventListener("click", e=>{ createFloating(e.clientX,e.clientY); });
+document.addEventListener("touchstart", e=>{ if(e.touches.length>0) createFloating(e.touches[0].clientX,e.touches[0].clientY); });
 
-document.addEventListener("click", e=>{ createFloating(e.clientX, e.clientY); });
-document.addEventListener("touchstart", e=>{ if(e.touches.length>0) createFloating(e.touches[0].clientX, e.touches[0].clientY); });
-
+// Background video subtle movement
 const bg = document.getElementById("bg-video");
 document.addEventListener("mousemove", e=>{
   const x = (e.clientX/window.innerWidth - 0.5) * 10;

@@ -1,0 +1,53 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:America/New_York
+X-LIC-LOCATION:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20250829T150000
+DTEND;TZID=America/New_York:20250829T152000
+DTSTAMP:20250828T040031Z
+ORGANIZER;CN=Tina Chumani:mailto:tina@primetimeva.com
+UID:0drr6kjj0njv31cudjle1g9nm4@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE
+ ;CN=Tina Chumani;X-NUM-GUESTS=0:mailto:tina@primetimeva.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=mandlandhlovu264@gmail.com;X-NUM-GUESTS=0:mailto:mandlandhlovu264@g
+ mail.com
+X-MICROSOFT-CDO-OWNERAPPTID:-1878197772
+CREATED:20250828T040023Z
+DESCRIPTION:Event Name\nVirtual assistant Job interview\n\nThis is an inter
+ view for our virtual assistant position\n\nLocation: https://us05web.zoom.u
+ s/j/5234019317\n\nPhone number: +27797009702\n\nWhat job are you applying f
+ or? (Please say in specific the role you applied for - do not just say "vir
+ tual assistant": No code specialist\n\nWe do not take reschedules. Are you 
+ 100% sure you can make the time selected?: Yes\n\nNeed to make changes to t
+ his event?\nCancel: https://calendly.com/cancellations/f2251766-445a-42d7-9
+ f4a-da122d691756\nReschedule: https://calendly.com/reschedulings/f2251766-4
+ 45a-42d7-9f4a-da122d691756\n\nPowered by Calendly.com\n
+LAST-MODIFIED:20250828T040028Z
+LOCATION:https://us05web.zoom.us/j/5234019317
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Mandla Ndhlovu and Tina Chumani
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
